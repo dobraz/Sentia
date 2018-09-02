@@ -28,6 +28,7 @@ $resourceTypesComputeArray=@((Get-AzureRmResourceProvider -ProviderNamespace Mic
 $resourceTypesComputeArray = $resourceTypesComputeArray | ForEach-Object {"Microsoft.Compute/$_"}
 #Create array that is combined of arrays for Microsoft.Network, Microsoft.Storage and Microsoft.Compute
 $ResourceTypesArray=$resourceTypesNetworkArray+$resourceTypesStorageArray+$resourceTypesComputeArray
+#Policy Definition 
 $DefinitionBody=@{
  "properties"=@{
     "displayName"="Allowed resource types"
@@ -62,8 +63,8 @@ $RestDefinition = @{
     Headers     = $authHeader
     Body        = $DefinitionBody | ConvertTo-Json -Depth 50
 }
-#PolicyAssignment using REST API
 Invoke-RestMethod @RestDefinition
+#PolicyAssignment using REST API
 $AssignBody=@{
  "properties"=@{
     "displayName"="Enforce resource Types"
