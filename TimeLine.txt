@@ -1,0 +1,11 @@
+22.08. 	- Got the assignement
+   	- Learning about the technology
+23.08.	- Created Azure account
+	- learning about thechnology
+26.08.	- Created v1 of the AzureDeploy.ps1 script (Created Resource Groups)
+	- Added tags for the Resource Group
+27.08 - 29.08. - Studiing REST APIs
+30.08.	- created REST API calls using native REST APIs
+31.08.	- created REST API calls using PowerShell
+01.09. 	- studiing GitHub
+02.09. 	- publishing a public GitHub Project
