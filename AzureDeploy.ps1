@@ -15,14 +15,18 @@ $RGTags
 #Create storage account and virtual network
 $Resources = New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName SentiaResourceGroup -TemplateUri https://raw.githubusercontent.com/dobraz/Sentia/master/azuredeployStrNet.json -TemplateParameterUri https://raw.githubusercontent.com/dobraz/Sentia/master/Parameters.json
 $Resources
+#Create array of Resorce Types for Resource Provider Microsoft.Network
 $resourceTypesNetworkArray=@((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.network).ResourceTypes.ResourceTypeName)
 $resourceTypesNetworkArray = $resourceTypesNetworkArray | ForEach-Object {"Microsoft.Network/$_"}
+#Create array of Resorce Types for Resource Provider Microsoft.Storage
 $resourceTypesStorageArray=@((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.storage).ResourceTypes.ResourceTypeName)
 $resourceTypesStorageArray = $resourceTypesStorageArray | ForEach-Object {"Microsoft.Storage/$_"}
+#Create array of Resorce Types for Resource Provider Microsoft.Compute
 $resourceTypesComputeArray=@((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.compute).ResourceTypes.ResourceTypeName)
 $resourceTypesComputeArray = $resourceTypesComputeArray | ForEach-Object {"Microsoft.Compute/$_"}
+#Create array that is combined of arrays for Microsoft.Network, Microsoft.Storage and Microsoft.Compute
 $ResourceTypesArray=$resourceTypesNetworkArray+$resourceTypesStorageArray+$resourceTypesComputeArray
-#Policy Definition
+#Policy Definition using REST API
 $DefinitionBody=@{
  "properties"=@{
     "displayName"="Allowed resource types"
@@ -57,7 +61,7 @@ $RestDefinition = @{
     Headers     = $authHeader
     Body        = $DefinitionBody | ConvertTo-Json -Depth 50
 }
-#PolicyAssignment
+#PolicyAssignment using REST API
 Invoke-RestMethod @RestDefinition
 $AssignBody=@{
  "properties"=@{
@@ -76,7 +80,7 @@ $AssignBody=@{
 }
 $RestAssign = @{
     Method      = 'PUT'
-    Uri         = 'https://management.azure.com/subscriptions/f929a8a8-6e38-454f-9968-dd60ab98b301/providers/Microsoft.Authorization/policyAssignments/Newassignment?api-version=2018-03-01'
+    Uri         = 'https://management.azure.com/subscriptions/f929a8a8-6e38-454f-9968-dd60ab98b301/resourceGroups/SentiaResourceGroup/providers/Microsoft.Authorization/policyAssignments/Newassignment?api-version=2018-03-01'
     ContentType = "application/json"
     Headers     = $authHeader
     Body        = $AssignBody | ConvertTo-Json -Depth 50
