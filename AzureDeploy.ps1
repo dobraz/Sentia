@@ -56,7 +56,7 @@ $DefinitionBody=@{
 }
 $RestDefinition = @{
     Method      = 'PUT'
-    Uri         = 'https://management.azure.com/subscriptions/f929a8a8-6e38-454f-9968-dd60ab98b301/providers/Microsoft.Authorization/policyDefinitions/AllowedResourceTypesv2?api-version=2018-03-01'
+    Uri         = 'https://management.azure.com/subscriptions/{Azure Subscription ID}/providers/Microsoft.Authorization/policyDefinitions/AllowedResourceTypesv2?api-version=2018-03-01'
     ContentType = "application/json"
     Headers     = $authHeader
     Body        = $DefinitionBody | ConvertTo-Json -Depth 50
@@ -70,7 +70,7 @@ $AssignBody=@{
     "metadata"=@{
       "assignedBy"="Dominik Obraz"
     }
-    "policyDefinitionId"="/subscriptions/f929a8a8-6e38-454f-9968-dd60ab98b301/providers/Microsoft.Authorization/policyDefinitions/AllowedResourceTypesv2"
+    "policyDefinitionId"="/subscriptions/{Azure Subscription ID}/providers/Microsoft.Authorization/policyDefinitions/AllowedResourceTypesv2"
     "parameters"=@{
       "listOfResourceTypesAllowed"=@{
         "value"=($ResourceTypesArray)
@@ -80,7 +80,7 @@ $AssignBody=@{
 }
 $RestAssign = @{
     Method      = 'PUT'
-    Uri         = 'https://management.azure.com/subscriptions/f929a8a8-6e38-454f-9968-dd60ab98b301/resourceGroups/SentiaResourceGroup/providers/Microsoft.Authorization/policyAssignments/Newassignment?api-version=2018-03-01'
+    Uri         = 'https://management.azure.com/subscriptions/{Azure Subscription ID}/resourceGroups/SentiaResourceGroup/providers/Microsoft.Authorization/policyAssignments/Newassignment?api-version=2018-03-01'
     ContentType = "application/json"
     Headers     = $authHeader
     Body        = $AssignBody | ConvertTo-Json -Depth 50
