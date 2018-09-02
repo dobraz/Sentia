@@ -1,0 +1,15 @@
+{
+    "properties" : {
+       "displayName" : "Enforce resource Types",
+       "description" : "Force resource types to compute, network and storage",
+       "metadata" : {
+         "assignedBy" : "Dominik Obraz"
+       },
+       "policyDefinitionId" : "/subscriptions/{your Azure subscription ID}/providers/Microsoft.Authorization/policyDefinitions/{Policy definition Name}"
+       "parameters": {
+         "listOfResourceTypesAllowed": {
+           "value" : [{List of allowed Resource types}]
+         }
+       }
+     }
+   }
