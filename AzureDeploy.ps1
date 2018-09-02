@@ -10,8 +10,8 @@ $authHeader = @{
 $ResourceGroup = New-AzureRmResourceGroup -Name SentiaResourceGroup -Location "West Europe"
 $ResourceGroup
 #Set Tags for resource Group
-Set-AzureRmResourceGroup -Name SentiaResourceGroup -Tag @{Environment="Test";Company="Sentia"}
+$RGTags = Set-AzureRmResourceGroup -Name SentiaResourceGroup -Tag @{Environment="Test";Company="Sentia"}
+$RGTags
 #Create storage account and virtual network
-New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName SentiaResourceGroup -TemplateUri https://github.com/dobraz/Sentia/blob/master/azuredeployStrNet.json -TemplateParameterUri https://github.com/dobraz/Sentia/blob/master/Parameters.json
-
-
+$Resources = New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName SentiaResourceGroup -TemplateUri https://raw.githubusercontent.com/dobraz/Sentia/master/azuredeployStrNet.json -TemplateParameterUri https://raw.githubusercontent.com/dobraz/Sentia/master/Parameters.json
+$Resources
