@@ -1,0 +1,27 @@
+{
+    "properties": {
+        "parameters": {
+            "allowedResourceTypes": {
+                "type": "array",
+                "metadata": {
+                    "description": "Policy Resource Types",
+                    "Type": "Microsoft.Compute, Microsoft.Storage, Microsoft.Network",
+                    "displayName": "Allowed Resource Types"
+                }
+            }
+        },
+        "displayName": "Allowed Resource Types",
+        "description": "This policy enables you to restrict the resource types",
+        "policyRule": {
+            "if": {
+                "not": {
+                    "field": "resourceTypes",
+                    "in": "[parameters('allowedResourceTypes')]"
+                }
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    }
+}
