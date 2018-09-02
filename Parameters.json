@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "storageAccountType": {
+      "Value": "Standard_LRS"
+    },
+    "location": {
+      "Value": "westeurope"
+      },
+    "vnetName": {     
+      "Value": "SentiaVNet1"      
+    },
+    "vnetAddressPrefix": {
+      "Value": "172.16.0.0/12"
+    },
+    "subnet1Prefix": {
+      "Value": "172.16.0.0/24"
+    },
+      "subnet1Name": {
+        "Value": "SentiaSubnet1"
+      },
+    "subnet2Prefix": {
+      "Value": "172.16.1.0/24"
+    },
+    "subnet2Name": {
+      "Value": "SentiaSubnet2"
+    },
+    "subnet3Prefix": {
+      "Value": "172.16.2.0/24"
+    },
+    "subnet3Name": {
+      "Value": "SentiaSubnet3"
+    }
+  }
+}
